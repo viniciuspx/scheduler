@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-export const Logout = () => {
+interface logout {
+  path: string;
+}
+
+export const Logout: FC<logout> = ({ path }) => {
   const router = useRouter();
-  const loginFailed = () => router.replace("/");
+  const loginFailed = () => router.replace(path);
   useEffect(() => {
     loginFailed();
   }, []);

@@ -5,17 +5,24 @@ import { lemon } from "@/app/fonts/fonts";
 import { login } from "../router/login";
 import { useRouter } from "next/navigation";
 import { setLoggedIn } from "../dashboard";
+import { useState } from "react";
 
 export const LoginForm = () => {
+  const [loginError, setLoginError] = useState(false);
   const router = useRouter();
+
   const HandleSubmit = async (event: any) => {
+    event.preventDefault();
     try {
       const res = await login(event);
       setLoggedIn(res);
-      router.replace("/dashboard");
     } catch (error) {
-      console.log("Something went wrong", error);
+      setLoginError(true);
+      console.log(error);
+      return;
     }
+
+    router.replace("/dashboard");
   };
   return (
     <div className="w-full h-lvh flex flex-wrap justify-center">
@@ -48,6 +55,11 @@ export const LoginForm = () => {
           >
             Login
           </button>
+          {loginError && (
+            <div className="w-4/5 md:w-2/5 h-[60px] border-[#ff1b1b] text-[#ff1b1b] font-bold border-2 my-2 mx-auto p-4 text-center rounded-md animate-shake">
+              Login inválido
+            </div>
+          )}
         </form>
         <Button buttonText="Cancel" link="/" customClass="mx-auto my-2" />
       </div>
