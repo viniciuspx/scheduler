@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export const LoginForm = () => {
   const [loginError, setLoginError] = useState(false);
+  const [messageError, setMessageError] = useState('Login Inválido');
   const router = useRouter();
 
   const HandleSubmit = async (event: any) => {
@@ -16,8 +17,9 @@ export const LoginForm = () => {
     try {
       const res = await login(event);
       setLoggedIn(res);
-    } catch (error) {
+    } catch (error: any) {
       setLoginError(true);
+      setMessageError(error.response.data.message);
       console.log(error);
       return;
     }
@@ -57,7 +59,7 @@ export const LoginForm = () => {
           </button>
           {loginError && (
             <div className="w-4/5 md:w-2/5 h-[60px] border-[#ff1b1b] text-[#ff1b1b] font-bold border-2 my-2 mx-auto p-4 text-center rounded-md animate-shake">
-              Login inválido
+              {messageError}
             </div>
           )}
         </form>
