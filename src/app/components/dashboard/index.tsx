@@ -4,11 +4,18 @@ import { Logout } from "../logout/logout";
 import { CreateDashBoard } from "./mainBoard";
 
 var loggedIn = false;
-var username = '';
+var username = "";
+var id = "";
 
 export const setLoggedIn = async (value: boolean) => (loggedIn = value);
-export const setUsername = async (name: string) => (username = name);
+export const setUserInfo = async (name: string, id: string) => (
+  (username = name), (id = id)
+);
 
 export const DashBoardPage = () => {
-  return loggedIn ? <CreateDashBoard name={username}/> : <Logout path={"/login"} />;
+  return loggedIn ? (
+    <CreateDashBoard user={username} id={id} />
+  ) : (
+    <Logout path={"/login"} />
+  );
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setUsername } from "../dashboard";
+import { setUserInfo } from "../dashboard";
 
 export const login = async (event: any) => {
   var res = false;
@@ -10,7 +10,7 @@ export const login = async (event: any) => {
     })
     .then((response) => {
       if (response.statusText === "OK") {
-        setUsername(response.data.username);
+        setUserInfo(response.data.username, response.data.id);
         res = true;
       }
     });
