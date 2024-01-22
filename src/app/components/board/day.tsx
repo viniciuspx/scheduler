@@ -1,6 +1,7 @@
 import { lemon } from "@/app/fonts/fonts";
 import { useState } from "react";
 import Modal from "react-modal";
+import { postList } from "../router/postList";
 
 var dummy = [{ time: "", task: "" }];
 
@@ -38,6 +39,16 @@ export const Board = () => {
     setIsOpen(false);
   };
 
+  const handleSaveList = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await postList("4", dummy);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="w-full">
       <h1
@@ -58,9 +69,18 @@ export const Board = () => {
           );
         })}
       </div>
-      <div className="flex p-20" onClick={openModal}>
-        <button className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto">
+      <div className="flex p-20">
+        <button
+          className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
+          onClick={openModal}
+        >
           Add Item
+        </button>
+        <button
+          className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
+          onClick={handleSaveList}
+        >
+          Save List
         </button>
       </div>
       <Modal
