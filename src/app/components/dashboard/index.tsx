@@ -8,9 +8,10 @@ var username = "";
 var id = "";
 
 export const setLoggedIn = async (value: boolean) => (loggedIn = value);
-export const setUserInfo = async (name: string, id: string) => (
-  (username = name), (id = id)
-);
+export const setUserInfo = async (name: string, userid: string) => {
+  username = name;
+  id = userid;
+};
 
 export const DashBoardPage = () => {
   return loggedIn ? (

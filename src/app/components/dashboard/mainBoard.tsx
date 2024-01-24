@@ -12,11 +12,9 @@ export const CreateDashBoard: FC<dashBoardProps> = ({ user, id }) => {
 
   const handleLogout = () => setLogout(true);
 
-  const print = () => console.log(user);
-
   return (
     <div className="flex flex-col md:w-full w-full md:flex-row">
-      <div className="w-full md:w-[150px] md:h-lvh md:border-r-2 p-6 md:border-[#24669C] flex flex-col justify-between">
+      <div className="w-full md:w-2/12 md:h-lvh md:border-r-2 p-6 md:border-[#24669C] flex flex-col justify-between">
         <h2 className="text-[16px] md:text-[22px] text-[#24669C] font-bold text-center">
           Welcome! {user}
         </h2>
@@ -27,8 +25,8 @@ export const CreateDashBoard: FC<dashBoardProps> = ({ user, id }) => {
           Logout
         </button>
       </div>
-      <div className="p-12 w-full flex m-auto">
-        <Board />
+      <div className="p-12 w-full md:w-10/12 flex m-auto">
+        <Board id={id}/>
       </div>
       {logout && <Logout path="/" />}
     </div>

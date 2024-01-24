@@ -10,7 +10,7 @@ export const login = async (event: any) => {
     })
     .then((response) => {
       if (response.statusText === "OK") {
-        setUserInfo(response.data.username, response.data.id);
+        setUserInfo(response.data.username, response.data._id);
         res = true;
       }
     });
