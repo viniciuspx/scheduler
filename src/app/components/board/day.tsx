@@ -4,6 +4,9 @@ import Modal from "react-modal";
 import { postList } from "../router/postList";
 import { getList } from "../router/getList";
 
+import { BiSolidTrashAlt } from "react-icons/bi";
+import { BiCheckCircle } from "react-icons/bi";
+
 interface userboard {
   id: string;
 }
@@ -26,6 +29,8 @@ Modal.setAppElement("body");
 export const Board: FC<userboard> = ({ id }) => {
   const [mainList, setmainList] = useState([{}]);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [selectItem, setSelectItem] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     var resArray: any = [];
@@ -64,15 +69,28 @@ export const Board: FC<userboard> = ({ id }) => {
     e.preventDefault();
     if (mainList.length < 250) {
       try {
-        console.log(mainList);
         const res = await postList(id, mainList);
-        console.log(res);
+        setSaved(res);
+        setTimeout(() => {
+          setSaved(false);
+        }, 2000);
       } catch (error) {
         console.log(error);
       }
     } else {
       alert("Max list length.");
     }
+  };
+
+  const handleSelectItem = () => setSelectItem(!selectItem);
+
+  const handleDeleteItem = (event: any) => {
+    const selectedIndex = [Number(event.target.id)];
+    var tempList = mainList;
+    tempList = tempList.filter((item, index) => {
+      return selectedIndex.indexOf(index) == -1;
+    });
+    setmainList(tempList);
   };
 
   return (
@@ -82,16 +100,28 @@ export const Board: FC<userboard> = ({ id }) => {
       >
         For today:
       </h1>
-      <div className="w-3/5 m-auto border-2 border-[#24669c5a] border-dashed rounded-xl p-4">
+      <div className="w-full my-auto border-t-2 border-b-2 border-[#24669c5a] border-dashed pt-10 pb-10">
         {mainList.map((item: any, index) => {
           if (item.time && item.task) {
             return (
               <div
-                className="p-2 border-b-2 flex flex-row flex-wrap text-center text-wrap overflow-auto"
+                className="p-2 border-b-2 flex flex-row flex-wrap text-center text-wrap overflow-auto hover:bg-[#0000000A]"
                 key={index}
+                onClick={handleSelectItem}
               >
+                {selectItem && (
+                  <button
+                    className="w-[20px] text-red-600"
+                    id={String(index)}
+                    onClick={handleDeleteItem}
+                  >
+                    <BiSolidTrashAlt />
+                  </button>
+                )}
                 <div className="w-1/5">{item.time}</div>
-                <div className="w-4/5">{item.task}</div>
+                <div className={selectItem ? `w-3/5` : `w-4/5`}>
+                  {item.task}
+                </div>
               </div>
             );
           }
@@ -110,6 +140,11 @@ export const Board: FC<userboard> = ({ id }) => {
         >
           Save List
         </button>
+        {saved && (
+          <span className="my-auto text-green-700">
+            <BiCheckCircle />
+          </span>
+        )}
       </div>
       <Modal
         isOpen={modalIsOpen}

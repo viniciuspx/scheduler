@@ -5,7 +5,7 @@ export const signup = async (event: any) => {
 
   try {
     await axios
-      .post("http://localhost:8080/auth/register", {
+      .post(process.env.API_URL + "/auth/register", {
         name: event.target.elements.name.value,
         username: event.target.elements.username.value,
         email: event.target.elements.email.value,

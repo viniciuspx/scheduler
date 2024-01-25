@@ -25,7 +25,7 @@ export const CreateDashBoard: FC<dashBoardProps> = ({ user, id }) => {
           Logout
         </button>
       </div>
-      <div className="p-12 w-full md:w-10/12 flex m-auto">
+      <div className="p-4 w-full md:w-10/12 flex m-auto">
         <Board id={id}/>
       </div>
       {logout && <Logout path="/" />}

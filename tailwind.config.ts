@@ -15,6 +15,7 @@ const config: Config = {
       },
       animation: {
         shake: "shake 0.82s cubic-bezier(.36,.07,.19,.97) both",
+        fade: "fadeOut 5s ease-in-out",
       },
       keyframes: {
         shake: {
@@ -30,6 +31,10 @@ const config: Config = {
           "40%, 60%": {
             transform: "translate3d(4px, 0, 0)",
           },
+        },
+        fadeOut: {
+          "0%": { opacity: "1" },
+          "100%": { opacity: "0" },
         },
       },
     },
