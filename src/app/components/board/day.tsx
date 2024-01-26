@@ -6,6 +6,7 @@ import { getList } from "../router/getList";
 
 import { BiSolidTrashAlt } from "react-icons/bi";
 import { BiCheckCircle } from "react-icons/bi";
+import { deleteList } from "../router/deleteList";
 
 interface userboard {
   id: string;
@@ -35,14 +36,14 @@ export const Board: FC<userboard> = ({ id }) => {
   useEffect(() => {
     var resArray: any = [];
     getList(id).then((r) => {
-      if (mainList.length === 1) {
+      if (r && mainList.length === 1) {
         r.forEach((element: any) => {
           resArray.push(element);
         });
         setmainList(resArray);
       }
     });
-  }, []);
+  }, [[], mainList]);
 
   const afterOpenModal = () => {};
   const closeModal = () => setIsOpen(false);
@@ -93,6 +94,11 @@ export const Board: FC<userboard> = ({ id }) => {
     setmainList(tempList);
   };
 
+  const handleDeleteList = async () => {
+    deleteList(id);
+    setmainList([{}]);
+  };
+
   return (
     <div className="w-full">
       <h1
@@ -127,7 +133,7 @@ export const Board: FC<userboard> = ({ id }) => {
           }
         })}
       </div>
-      <div className="flex p-20">
+      <div className="flex py-20">
         <button
           className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
           onClick={openModal}
@@ -145,6 +151,14 @@ export const Board: FC<userboard> = ({ id }) => {
             <BiCheckCircle />
           </span>
         )}
+      </div>
+      <div className="flex flex-row flex-wrap">
+        <button
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#ff2929] font-bold border-[#ff2929] rounded-xl border-2 hover:bg-[#ff2929] hover:text-white m-auto"
+          onClick={handleDeleteList}
+        >
+          Delete List
+        </button>
       </div>
       <Modal
         isOpen={modalIsOpen}

@@ -17,6 +17,7 @@ export const LoginForm = () => {
     try {
       const res = await login(event);
       setLoggedIn(res);
+      console.log(res);
     } catch (error: any) {
       setLoginError(true);
       setMessageError(error.response.data.message);

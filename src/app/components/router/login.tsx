@@ -9,7 +9,7 @@ export const login = async (event: any) => {
       password: event.target.elements.password.value,
     })
     .then((response) => {
-      if (response.statusText === "OK") {
+      if (response.status === 200) {
         setUserInfo(response.data.username, response.data._id);
         res = true;
       }
