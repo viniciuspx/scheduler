@@ -6,19 +6,24 @@ import { login } from "../router/login";
 import { useRouter } from "next/navigation";
 import { setLoggedIn } from "../dashboard";
 import { useState } from "react";
+import { BiLoaderAlt } from "react-icons/bi";
 
 export const LoginForm = () => {
   const [loginError, setLoginError] = useState(false);
-  const [messageError, setMessageError] = useState('Login Inválido');
+  const [messageError, setMessageError] = useState("Login Inválido");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const HandleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const res = await login(event);
-      setLoggedIn(res);
-      console.log(res);
+      setLoading(true);
+      await login(event).then((r) => {
+        setLoggedIn(r);
+        setLoading(false);
+      });
     } catch (error: any) {
+      setLoading(false);
       setLoginError(true);
       setMessageError(error.response.data.message);
       console.log(error);
@@ -42,19 +47,20 @@ export const LoginForm = () => {
         >
           <input
             type="text"
-            className="w-4/5 md:w-2/5 h-[25px] border-[2px] border-[#24669C] my-2 mx-auto p-4 text-center rounded-md"
-            placeholder="Login/E-mail"
+            className="w-4/5 md:w-2/5 h-[25px] border-[2px] border-[#24669C] my-2 mx-auto p-4 text-center rounded-md bg-transparent text-black"
+            placeholder="E-mail"
             name="email"
           ></input>
           <input
             type="password"
-            className="w-4/5 md:w-2/5 h-[25px] border-[2px] border-[#24669C] my-2 mx-auto p-4 text-center rounded-md"
+            className="w-4/5 md:w-2/5 h-[25px] border-[2px] border-[#24669C] my-2 mx-auto p-4 text-center rounded-md bg-transparent text-black"
             placeholder="Password"
             name="password"
           ></input>
+          {loading && <BiLoaderAlt className="m-auto animate-spin" />}
           <button
             type="submit"
-            className="w-2/5 md:w-2/5 max-w-[600px] text-white font-bold border-[#42A5F5] bg-[#42A5F5] rounded-xl border-2 hover:bg-white hover:text-[#24669C] mx-auto my-2"
+            className="w-2/5 md:w-2/5 max-w-[600px] text-[#F4FAFF] font-bold border-[#42A5F5] bg-[#42A5F5] rounded-xl border-2 hover:bg-[#F4FAFF] hover:text-[#24669C] mx-auto my-2"
           >
             Login
           </button>

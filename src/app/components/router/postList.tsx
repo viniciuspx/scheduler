@@ -6,7 +6,7 @@ export const postList = async (userId: string, list: any) => {
   await axios
     .post(process.env.API_URL + "/list/create", { payload })
     .then((response) => {
-      if (response.statusText === "OK") {
+      if (response.status === 200) {
         res = true;
       }
     });

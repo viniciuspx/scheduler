@@ -18,7 +18,7 @@ export const Button: FC<buttonProps> = ({ buttonText, link, customClass }) => {
       <button
         type="button"
         onClick={handleOnClick}
-        className="w-full md:w-full max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white"
+        className="w-full md:w-full max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF]"
       >
         {buttonText}
       </button>

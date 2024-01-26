@@ -33,6 +33,8 @@ export const Board: FC<userboard> = ({ id }) => {
   const [selectItem, setSelectItem] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  const date = new Date();
+
   useEffect(() => {
     var resArray: any = [];
     getList(id).then((r) => {
@@ -86,16 +88,14 @@ export const Board: FC<userboard> = ({ id }) => {
   const handleSelectItem = () => setSelectItem(!selectItem);
 
   const handleDeleteItem = (event: any) => {
-    const selectedIndex = [Number(event.target.id)];
-    var tempList = mainList;
-    tempList = tempList.filter((item, index) => {
-      return selectedIndex.indexOf(index) == -1;
-    });
+    const selectedIndex = Number(event.target.id);
+    var tempList = [...mainList];
+    tempList.splice(selectedIndex, 1);
     setmainList(tempList);
   };
 
   const handleDeleteList = async () => {
-    deleteList(id);
+    await deleteList(id);
     setmainList([{}]);
   };
 
@@ -104,7 +104,7 @@ export const Board: FC<userboard> = ({ id }) => {
       <h1
         className={`text-center text-[32px] md:text-[42px] font-bold text-[#24669C] ${lemon.className} p-10`}
       >
-        For today:
+        {date.toLocaleDateString()}
       </h1>
       <div className="w-full my-auto border-t-2 border-b-2 border-[#24669c5a] border-dashed pt-10 pb-10">
         {mainList.map((item: any, index) => {
@@ -116,12 +116,8 @@ export const Board: FC<userboard> = ({ id }) => {
                 onClick={handleSelectItem}
               >
                 {selectItem && (
-                  <button
-                    className="w-[20px] text-red-600"
-                    id={String(index)}
-                    onClick={handleDeleteItem}
-                  >
-                    <BiSolidTrashAlt />
+                  <button id={String(index)} onClick={handleDeleteItem}>
+                    <BiSolidTrashAlt className="w-[20px] text-red-600 cursor-pointer m-auto pointer-events-none" />
                   </button>
                 )}
                 <div className="w-1/5">{item.time}</div>
@@ -135,13 +131,13 @@ export const Board: FC<userboard> = ({ id }) => {
       </div>
       <div className="flex py-20">
         <button
-          className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto"
           onClick={openModal}
         >
           Add Item
         </button>
         <button
-          className="w-4/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto"
           onClick={handleSaveList}
         >
           Save List
@@ -154,7 +150,7 @@ export const Board: FC<userboard> = ({ id }) => {
       </div>
       <div className="flex flex-row flex-wrap">
         <button
-          className="w-4/5 md:w-1/5 max-w-[600px] text-[#ff2929] font-bold border-[#ff2929] rounded-xl border-2 hover:bg-[#ff2929] hover:text-white m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#ff2929] font-bold border-[#ff2929] rounded-xl border-2 hover:bg-[#ff2929] hover:text-[#F4FAFF] m-auto"
           onClick={handleDeleteList}
         >
           Delete List
@@ -183,7 +179,7 @@ export const Board: FC<userboard> = ({ id }) => {
             maxLength={144}
             className="p-2 md:w-[400px] md:h-[150px] border-2 m-4 break-words"
           ></textarea>
-          <button className="w-2/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto">
+          <button className="w-2/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto">
             Add
           </button>
         </form>
