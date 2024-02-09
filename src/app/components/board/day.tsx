@@ -131,13 +131,13 @@ export const Board: FC<userboard> = ({ id }) => {
       </div>
       <div className="flex py-20">
         <button
-          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
           onClick={openModal}
         >
           Add Item
         </button>
         <button
-          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
           onClick={handleSaveList}
         >
           Save List
@@ -150,7 +150,7 @@ export const Board: FC<userboard> = ({ id }) => {
       </div>
       <div className="flex flex-row flex-wrap">
         <button
-          className="w-4/5 md:w-1/5 max-w-[600px] text-[#ff2929] font-bold border-[#ff2929] rounded-xl border-2 hover:bg-[#ff2929] hover:text-[#F4FAFF] m-auto"
+          className="w-4/5 md:w-1/5 max-w-[600px] text-[#ff2929] font-bold border-[#ff2929] rounded-xl border-2 hover:bg-[#ff2929] hover:text-white m-auto"
           onClick={handleDeleteList}
         >
           Delete List
@@ -179,7 +179,7 @@ export const Board: FC<userboard> = ({ id }) => {
             maxLength={144}
             className="p-2 md:w-[400px] md:h-[150px] border-2 m-4 break-words"
           ></textarea>
-          <button className="w-2/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto">
+          <button className="w-2/5 md:w-2/5 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto">
             Add
           </button>
         </form>

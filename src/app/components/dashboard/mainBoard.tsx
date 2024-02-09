@@ -20,7 +20,7 @@ export const CreateDashBoard: FC<dashBoardProps> = ({ user, id }) => {
         </h2>
         <button
           onClick={handleLogout}
-          className="w-3/5 md:w-4/5 my-4 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-[#F4FAFF] m-auto"
+          className="w-3/5 md:w-4/5 my-4 max-w-[600px] text-[#24669C] font-bold border-[#42A5F5] rounded-xl border-2 hover:bg-[#42A5F5] hover:text-white m-auto"
         >
           Logout
         </button>

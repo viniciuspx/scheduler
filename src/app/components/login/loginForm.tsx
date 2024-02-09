@@ -60,7 +60,7 @@ export const LoginForm = () => {
           {loading && <BiLoaderAlt className="m-auto animate-spin" />}
           <button
             type="submit"
-            className="w-2/5 md:w-2/5 max-w-[600px] text-[#F4FAFF] font-bold border-[#42A5F5] bg-[#42A5F5] rounded-xl border-2 hover:bg-[#F4FAFF] hover:text-[#24669C] mx-auto my-2"
+            className="w-2/5 md:w-2/5 max-w-[600px] text-white font-bold border-[#42A5F5] bg-[#42A5F5] rounded-xl border-2 hover:bg-white hover:text-[#24669C] mx-auto my-2"
           >
             Login
           </button>
