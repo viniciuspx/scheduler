@@ -11,11 +11,8 @@ export const MakeHome = () => {
   const handleClick = () => setOpen(!open);
 
   setTimeout(() => {
-    setOpen(true);
-    setTimeout(() => {
-      setOpen(false);
-    }, 7000);
-  }, 1000);
+    setOpen(!open);
+  }, 4000);
 
   return (
     <div className="h-lvh flex flex-row">
