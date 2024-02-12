@@ -2,8 +2,12 @@
 
 How to use!
 
-Sign-up on the site feel fre to explore the API too.
+➡️ [Aqui 📅](https://scheduler-eosin.vercel.app/)
 
-Simple APP made with NextJS, ReactJs and ExpressJS
+Sign-up on the site feel free to explore the API too.
 
 Backend at https://github.com/viniciuspx/scheduler-api
+
+----
+
+Simple APP made with **NextJS**, **ReactJS**, **Typescript**, **TailwindCSS** and **ExpressJS**
